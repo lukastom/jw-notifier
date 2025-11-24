@@ -50,10 +50,37 @@ function jw_daily_fetch_html( string $url ): string {
 
 /**
  * Vrací denní text jako asociativní pole: date, theme, body, link.
+ * Používá datovou URL ve tvaru /YYYY/MM/DD.
+ * Kvůli offsetu na wol.jw.org používá "zítra" (today + 1 day).
  */
 function jw_daily_get_daily_text(): array {
-    $url  = 'https://wol.jw.org/cs/wol/h/r29/lp-b';
     $base = 'https://wol.jw.org';
+
+    // "Dnes" v Europe/Prague (nebo WP timezone, pokud je k dispozici)
+    if ( function_exists( 'wp_timezone' ) ) {
+        $tz  = wp_timezone();
+        $now = new DateTime( 'now', $tz );
+    } else {
+        $tz  = new DateTimeZone( 'Europe/Prague' );
+        $now = new DateTime( 'now', $tz );
+    }
+
+    // POSUN O +1 DEN – wol stránka pro náš dnešek je pod zítřejší URL
+    $target = clone $now;
+    $target->modify( '+1 day' );
+
+    $year  = (int) $target->format( 'Y' );
+    $month = (int) $target->format( 'm' );
+    $day   = (int) $target->format( 'd' );
+
+    // např. https://wol.jw.org/cs/wol/h/r29/lp-b/2025/11/25
+    $url = sprintf(
+        '%s/cs/wol/h/r29/lp-b/%04d/%02d/%02d',
+        rtrim( $base, '/' ),
+        $year,
+        $month,
+        $day
+    );
 
     $html = jw_daily_fetch_html( $url );
 
