@@ -18,6 +18,8 @@ JW Notifier is a lightweight WordPress plugin that sends daily Telegram reminder
 ✓ Minimal and self-contained codebase  
 ✓ Works even on cheap shared hosting
 
+![](images/bot_image1.png)
+
 ## Installation
 
 1. Upload the folder `jw-notifier/` into:
