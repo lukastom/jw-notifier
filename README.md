@@ -9,8 +9,6 @@ JW Notifier is a lightweight WordPress plugin that sends daily Telegram reminder
 - Designed to run inside any existing WordPress installation  
   (I was too lazy to spin up another VPS just for two cron jobs.)
 
----
-
 ## Features
 
 ✓ Scrapes the official JW Daily Text (WOL)  
@@ -19,8 +17,6 @@ JW Notifier is a lightweight WordPress plugin that sends daily Telegram reminder
 ✓ Two independent cron endpoints  
 ✓ Minimal and self-contained codebase  
 ✓ Works even on cheap shared hosting
-
----
 
 ## Installation
 
@@ -43,8 +39,6 @@ jw-bible-reading-notifier.php
 jw-daily-cron.php
 jw-bible-cron.php
 ```
-
----
 
 ## Creating a Telegram Bot
 
@@ -81,8 +75,6 @@ jw-bible-cron.php
 
     → This number is your **chat_id**.
 
----
-
 ## Configure the Plugin
 
 Open:
@@ -99,8 +91,6 @@ return [ YOUR_CHAT_ID ];
 ```
 
 Both daily-text and bible-reading notifications reuse these values.
-
----
 
 ## Cron Setup (Server Side)
 
@@ -124,8 +114,6 @@ Recommended limits:
 - **Time limit:** 60 seconds  
 - **Memory limit:** 64 MB  
 
----
-
 ## Manual Testing (Optional)
 
 Daily text:
@@ -148,9 +136,3 @@ https://your-domain.com/?jw_bible_notify=1
 - Does not require any external libraries.
 - Works on shared hosting without shell access.
 - Fully contained inside the plugin folder.
-
----
-
-## License
-
-Free for personal, non-commercial use.
